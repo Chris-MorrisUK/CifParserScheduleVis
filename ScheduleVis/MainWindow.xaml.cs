@@ -54,21 +54,31 @@ namespace ScheduleVis
             openDlg.Title = "Station List to import";
             if (openDlg.ShowDialog(this) == true)
             {
+                addMsg("Station List Loading");
                 IFileController cntrl = new StationFileControl();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text,this.rbUri.IsChecked == true);
                 List<Exception> Errors;
                 IGraph stationNameGraph = parser.ParseFile(openDlg.FileName, provInfo, cntrl,out Errors);
+                ((MainWindowViewModel)this.DataContext).AddErrorBulk(Errors);
                 saveGraphToTurtle(stationNameGraph);
                 saveGraphToRDF(stationNameGraph);
+                
             }
 
         }
 
-        void parser_MessageToDisplay(string msg, string title, MessageBoxImage img)
+        void parser_MessageToDisplay(string msg, string title, MessageBoxImage img,bool displayBox)
         {
-            displayMessage(msg, title, img);
+            if (displayBox)
+                displayMessage(msg, title, img);
+            addMsg(msg);
+        }
+
+        private void addMsg(string msg)
+        {
+            ((MainWindowViewModel)this.DataContext).AddMessage(msg);
         }
 
         private void saveGraphToTurtle(IGraph graphToSave)
@@ -103,10 +113,6 @@ namespace ScheduleVis
             return UriFactory.Create(res);
         }
 
-
-
-
-
         //Saves invoking it every time, also allows for logging in the future, should it be deemed usefull
         private void displayMessage(string msg,string title,MessageBoxImage img)
         {
@@ -127,12 +133,14 @@ namespace ScheduleVis
             openDlg.Title = "Schedule to Import";
             if (openDlg.ShowDialog(this) == true)
             {
+                addMsg("Schedule Loading");
                 IFileController cntrl = new ScheduleFileControl();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text, this.rbUri.IsChecked == true);
                 List<Exception> Errors;
                 IGraph stationNameGraph = parser.ParseFile(openDlg.FileName, provInfo, cntrl, out Errors);
+                ((MainWindowViewModel)this.DataContext).AddErrorBulk(Errors);
                 saveGraphToTurtle(stationNameGraph);
             }
         }
@@ -145,18 +153,20 @@ namespace ScheduleVis
             openDlg.Title = "Station List to import";
             if (openDlg.ShowDialog(this) == true)
             {
+                addMsg("Starting Stations");
                 IFileController cntrl = new StationFileControl();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text, this.rbUri.IsChecked == true);
                 List<Exception> Errors;
                 IGraph combinedGraph = parser.ParseFile(openDlg.FileName, provInfo, cntrl, out  Errors);
-
+                addMsg("Done Stations");
                 openDlg.DefaultExt = ".mca";
                 openDlg.Filter = "Complete schedule file|*.mca";
                 openDlg.Title = "Schedule to Import";
                 if (openDlg.ShowDialog(this) == true)
                 {
+                    addMsg("Starting Schedule");
                     IFileController scheduledCntrl = new ScheduleFileControl();
                     List<Exception> ErrorsTwo;
                     IGraph resultingGraph = parser.ParseFile(openDlg.FileName, provInfo, scheduledCntrl, combinedGraph, out ErrorsTwo);

@@ -45,7 +45,7 @@ namespace ScheduleVis
                     aurthor = targetGraph.CreateUriNode(aurthorUri);
                 else
                 {
-                    OnMessageToDisplay("Aurthors name Uri invalid", "Error", System.Windows.MessageBoxImage.Error);
+                    OnMessageToDisplay("Aurthors name Uri invalid", "Error", System.Windows.MessageBoxImage.Error,true);
                 }
             }
             if (aurthor != null)
@@ -78,14 +78,14 @@ namespace ScheduleVis
 
 
 
-        public delegate void MessageDisplayDel(string msg, string title, System.Windows.MessageBoxImage img);
+        public delegate void MessageDisplayDel(string msg, string title, System.Windows.MessageBoxImage img,bool displayBox);
         public event MessageDisplayDel MessageToDisplay;
 
-        protected void OnMessageToDisplay(string msg, string title, System.Windows.MessageBoxImage img)
+        protected void OnMessageToDisplay(string msg, string title, System.Windows.MessageBoxImage img,bool displayBox)
         {
             if (MessageToDisplay != null)
             {
-                MessageToDisplay(msg, title, img);
+                MessageToDisplay(msg, title, img, displayBox);
             }
         }
     }
