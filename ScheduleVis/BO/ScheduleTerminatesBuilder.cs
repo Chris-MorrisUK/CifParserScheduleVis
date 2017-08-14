@@ -5,18 +5,18 @@ using System.Text;
 
 namespace ScheduleVis.BO
 {
-    public class ScheduledStopFactory: IImportedItemFactory
+    public class ScheduleTerminatesBuilder: IImportedItemFactory
     {
         public IImportedItem Create(string line)
         {
-            ScheduledStop result = new ScheduledStop();
+            ScheduleTerminates result = new ScheduleTerminates();
             result.PopulateFromLine(line);
             return result;
         }
 
         public string GetFieldCode()
         {
-            return "LI";
+            return "LT";
         }
     }
 }

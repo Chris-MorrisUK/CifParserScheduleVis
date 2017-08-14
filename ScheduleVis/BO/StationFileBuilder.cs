@@ -9,7 +9,7 @@ using System.IO;
 
 namespace ScheduleVis.BO
 {
-    public class StationFileControl: IFileController
+    public class StationFileBuilder: IFileController
     {
         public void ProcessHeader(StreamReader inStream, ref IGraph stationNameGraph, IUriNode generationActivity,string fileName)
         {

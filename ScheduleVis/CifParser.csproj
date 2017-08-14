@@ -70,12 +70,12 @@
     <Compile Include="BO\ActiviesCollection.cs" />
     <Compile Include="BO\Activity.cs" />
     <Compile Include="BO\BankHolidayRunning.cs" />
-    <Compile Include="BO\BasicScheduleItemFactory.cs" />
-    <Compile Include="BO\ChangesEnRouteFactory.cs" />
+    <Compile Include="BO\BasicScheduleItemBuilder.cs" />
+    <Compile Include="BO\ChangesEnRouteBuilder.cs" />
     <Compile Include="BO\TiplocItemBase.cs" />
-    <Compile Include="BO\ScheduledStopFactory.cs" />
-    <Compile Include="BO\ScheduleOriginFactory.cs" />
-    <Compile Include="BO\ScheduleTerminatesFactory.cs" />
+    <Compile Include="BO\ScheduledStopBuilder.cs" />
+    <Compile Include="BO\ScheduleOriginBuilder.cs" />
+    <Compile Include="BO\ScheduleTerminatesBuilder.cs" />
     <Compile Include="BO\ScheduleTimeExtractor.cs" />
     <Compile Include="BO\ServiceNodeBase.cs" />
     <Compile Include="BO\WeekDayFlag.cs" />
@@ -84,38 +84,32 @@
     <Compile Include="BO\IImportedItem.cs" />
     <Compile Include="BO\ScheduledRoute.cs" />
     <Compile Include="BO\ScheduledStop.cs" />
-    <Compile Include="BO\ScheduleFileControl.cs" />
+    <Compile Include="BO\ScheduleFactory.cs" />
     <Compile Include="BO\ScheduleOrigin.cs" />
     <Compile Include="BO\ScheduleTerminates.cs" />
     <Compile Include="BO\Station.cs" />
-    <Compile Include="BO\StationFileControl.cs" />
+    <Compile Include="BO\StationFileBuilder.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess\Credential.cs" />
-    <Compile Include="DisplayableGraph.cs" />
     <Compile Include="FileParseBase.cs" />
-    <Compile Include="ImportFileFormatException.cs" />
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="GUI\ImportFileFormatException.cs" />
+    <Compile Include="GUI\MainWindowViewModel.cs" />
     <Compile Include="ProvInfo.cs" />
     <Compile Include="UriNodeExt.cs" />
-    <Compile Include="frmStardogDetails.xaml.cs">
+    <Compile Include="GUI\frmStardogDetails.xaml.cs">
       <DependentUpon>frmStardogDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinkedDataBase\LinkedItem.cs" />
     <Compile Include="LinkedDataBase\Quad.cs" />
     <Compile Include="ProgramState.cs" />
-    <Compile Include="RailService.xaml.cs">
-      <DependentUpon>RailService.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Schedule.cs" />
     <Compile Include="DataAccess\StardogLinkedDataSource.cs" />
     <Compile Include="DataAccess\StardogServerDetails.cs" />
-    <Compile Include="schedulesCollection.cs" />
     <Compile Include="Util.cs" />
-    <Page Include="frmStardogDetails.xaml">
+    <Page Include="GUI\frmStardogDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="GUI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -123,14 +117,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="GUI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RailService.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

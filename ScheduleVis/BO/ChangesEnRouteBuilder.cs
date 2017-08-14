@@ -5,18 +5,16 @@ using System.Text;
 
 namespace ScheduleVis.BO
 {
-    public class ScheduleOriginFactory: IImportedItemFactory
+    public class ChangesEnRouteBuilder: IImportedItemFactory
     {
         public IImportedItem Create(string line)
         {
-            ScheduleOrigin result = new ScheduleOrigin();
-            result.PopulateFromLine(line);
-            return result;
+            throw new NotImplementedException();
         }
 
         public string GetFieldCode()
         {
-            return "LO";
+            return "CR";
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ScheduleVis.BO
 {
-    public class BasicScheduleItemFactory: IImportedItemFactory
+    public class BasicScheduleItemBuilder: IImportedItemFactory
     {
         public IImportedItem Create(string line)
         {

@@ -7,7 +7,7 @@ using VDS.RDF.Parsing;
 
 namespace ScheduleVis.BO
 {
-    public class ScheduleFileControl : IFileController
+    public class ScheduleFactory : IFileController
     {
         public void ProcessHeader(System.IO.StreamReader inStream, ref VDS.RDF.IGraph targetGraph, VDS.RDF.IUriNode generationActivity, string fileName)
         {
@@ -46,14 +46,14 @@ namespace ScheduleVis.BO
         {
             Errors = new List<Exception>();
             List<IImportedItem> schedules = new List<IImportedItem>();
-            BasicScheduleItemFactory bsFactory = new BasicScheduleItemFactory();
+            BasicScheduleItemBuilder bsFactory = new BasicScheduleItemBuilder();
             string scheduleStart = bsFactory.GetFieldCode();
             int lineN = 1; //header will have been parsed at the very least by this point
             //now parse all the LI lines                                
-            ScheduledStopFactory interimFact = new ScheduledStopFactory();
-            ChangesEnRouteFactory changesFact = new ChangesEnRouteFactory();
-            ScheduleOriginFactory orginFact = new ScheduleOriginFactory();
-            ScheduleTerminatesFactory termFact = new ScheduleTerminatesFactory();
+            ScheduledStopBuilder interimFact = new ScheduledStopBuilder();
+            ChangesEnRouteBuilder changesFact = new ChangesEnRouteBuilder();
+            ScheduleOriginBuilder orginFact = new ScheduleOriginBuilder();
+            ScheduleTerminatesBuilder termFact = new ScheduleTerminatesBuilder();
             char interimStopFirstChar = interimFact.GetFieldCode()[0];
             while (!inStream.EndOfStream)
             {

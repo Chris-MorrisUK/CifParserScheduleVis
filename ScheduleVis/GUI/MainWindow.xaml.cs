@@ -55,7 +55,7 @@ namespace ScheduleVis
             if (openDlg.ShowDialog(this) == true)
             {
                 addMsg("Station List Loading");
-                IFileController cntrl = new StationFileControl();
+                IFileController cntrl = new StationFileBuilder();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text,this.rbUri.IsChecked == true);
@@ -134,7 +134,7 @@ namespace ScheduleVis
             if (openDlg.ShowDialog(this) == true)
             {
                 addMsg("Schedule Loading");
-                IFileController cntrl = new ScheduleFileControl();
+                IFileController cntrl = new ScheduleFactory();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text, this.rbUri.IsChecked == true);
@@ -154,7 +154,7 @@ namespace ScheduleVis
             if (openDlg.ShowDialog(this) == true)
             {
                 addMsg("Starting Stations");
-                IFileController cntrl = new StationFileControl();
+                IFileController cntrl = new StationFileBuilder();
                 FileParseBase parser = new FileParseBase();
                 parser.MessageToDisplay += new FileParseBase.MessageDisplayDel(parser_MessageToDisplay);
                 ProvInfo provInfo = new ProvInfo(txtName.Text, this.rbUri.IsChecked == true);
@@ -167,7 +167,7 @@ namespace ScheduleVis
                 if (openDlg.ShowDialog(this) == true)
                 {
                     addMsg("Starting Schedule");
-                    IFileController scheduledCntrl = new ScheduleFileControl();
+                    IFileController scheduledCntrl = new ScheduleFactory();
                     List<Exception> ErrorsTwo;
                     IGraph resultingGraph = parser.ParseFile(openDlg.FileName, provInfo, scheduledCntrl, combinedGraph, out ErrorsTwo);
                     saveGraphToTurtle(resultingGraph);
